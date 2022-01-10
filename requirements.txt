@@ -24,7 +24,7 @@ dash==1.14.0
 dash_bootstrap_components==0.8.3
 dash-core-components==1.8.0
 dash-html-components==1.0.3
-dash-renderer==1.2.4
+dash-renderer==1.6.0
 dash-table==4.6.0
 docker==4.2.0
 docker-compose==1.25.4
