@@ -19,9 +19,9 @@ UploadFolder='UploadedData/'
 AssetsFolder='Assets/'
 
 
-#session = boto3.Session(profile_name="eb-cli")
+session = boto3.Session(profile_name="eb-cli")
 #session = boto3.session.Session(aws_access_key_id=os.environ['S3_KEY'], aws_secret_access_key=os.environ['S3_SECRET'])
-#client = session.client('s3')
+client = session.client('s3')
 
 
 ## MasterData and MetaData
