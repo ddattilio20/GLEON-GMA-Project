@@ -18,6 +18,8 @@ Bucket='gleongmabucket'
 UploadFolder='UploadedData/'
 AssetsFolder='Assets/'
 
+logging.basicConfig(filename='testing.log', level=logging.DEBUG)
+logging.debug(os.environ)
 
 #session = boto3.Session(profile_name="eb-cli")
 session = boto3.session.Session(aws_access_key_id=os.environ.get('S3_KEY'), aws_secret_access_key=os.environ.get('S3_SECRET'))
@@ -75,6 +77,3 @@ userId = dfCreds["id"]
 
 
 
-logging.basicConfig(filename='testing.log', level=logging.DEBUG)
-logging.info('This is a test')
-logging.debug(dfMasterData)
