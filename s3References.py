@@ -22,7 +22,7 @@ logging.basicConfig(filename='testing.log', level=logging.DEBUG)
 logging.debug(os.environ)
 
 #session = boto3.Session(profile_name="eb-cli")
-session = boto3.session.Session(aws_access_key_id=os.environ['AKIATILTXYESRIG4YDEF'], aws_secret_access_key=os.environ['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'])
+session = boto3.session.Session(aws_access_key_id='AKIATILTXYESRIG4YDEF', aws_secret_access_key='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')
 client = session.client('s3')
 
 
