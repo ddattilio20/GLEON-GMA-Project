@@ -233,6 +233,7 @@ def uploadPage():
                 style={'display': 'none'}
             ),
         ]),
+
         # Cell Count
         dbc.Row([
             dbc.Row(html.P('Cell count method?')),
@@ -812,6 +813,8 @@ def upload_to_aws(filename, objectName):
     except NoCredentialsError:
         print("Credentials not available")
         return False
+
+   
 
 def update_metadata(new_dbinfo):
     """

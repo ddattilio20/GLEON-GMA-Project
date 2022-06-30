@@ -19,7 +19,7 @@ import base64
 import io
 import pandas as pd
 from dash_reusable_components import Card, NamedSlider, NamedInlineRadioItems, HalsNamedInlineRadioItems
-from controls import month_Controls, Substrate_Status_options, Sample_Types_options, Field_Methods_options, Microcystin_Method_options, data_Review_options
+from controls import month_Controls, Substrate_Status_options, Sample_Types_options, Field_Methods_options, Microcystin_Method_options, data_Review_options, dataFormatOptions
 import datetime
 from urllib.parse import quote as urlquote
 import urllib.parse
@@ -556,6 +556,15 @@ def uploadPage():
                 style={'display': 'none'}
             ),
         ]),
+
+         dbc.Row([
+            HalsNamedInlineRadioItems(
+                name='Is the data in long format or wide format?',
+                id="data_format",
+                options=dataFormatOptions,
+            )
+        ]),
+
         # Cell Count
         dbc.Row([
             dbc.Row(html.P('Cell count method?')),
@@ -854,6 +863,31 @@ def upload_to_aws(filename, objectName):
     except NoCredentialsError:
         print("Credentials not available")
         return False
+
+@app
+
+
+def long_to_wide(filename):
+    """
+    -read in csv into the dataframe
+    -pivot the dataframe into wide format (still need to remove variable name column header in df)
+    -copy into csv? return the dataframe and then call other upload functions? 
+    -
+    """
+    
+
+    try:
+        df = pd.read_csv(filename)
+
+        new_dbdf = df.pivot(index='Body of Water', columns='lagos_variableName')
+
+
+    except Exception as e:
+        print(e)
+        return 'Error casting from long to wide format'
+
+
+
 
 
 def update_metadata(new_dbinfo):

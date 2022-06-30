@@ -112,6 +112,11 @@ ynLabels = {
     'Not Reported' : 'Not Reported',
 }
 
+dataFormat = {
+    'Long': 'Long',
+    'Wide': 'Wide',
+}
+
 
 ### Options
 Substrate_Status_options = [{'label': str(Substrate_Status[substrate_status]), 'value': str(substrate_status)}
@@ -149,3 +154,7 @@ institution_status_options = [{'label': str(INSTITUTIONS[inst_info]),
 
 ynOptions = [{'label': str(ynLabels[ynVal]), 'value': str(ynVal)}
                   for ynVal in ynLabels]
+
+dataFormatOptions = [{'label': str(dataFormat[data_format]),
+                    'value': str(data_format)}
+                    for data_format in dataFormat]
