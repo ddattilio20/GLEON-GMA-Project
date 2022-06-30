@@ -1,7 +1,11 @@
 To do:
 
-1. Cut unnecessary code from repository
-2. 
+1. Long to wide casting
+    -code to cast wide to long
+    -build upload csv template for long data
+    -
+2. Fix data not loading in site 
+3. 
 
 
 
@@ -18,17 +22,8 @@ Notes:
     -verified means you have card details verified (gets you 1000 hours of activity per month)
     -unverified 550 hours of dyno per month
 
-Uptime Robot potential fix to app falling asleep
 
 
-
--Free heroku falls asleep
-    potential fixes:
-        - paid heroku 
-        - aws (paid)
-        - host at ku 
-        - host on a local machine (probably not viable)
-        - bot to 'tickle' heroku site to prevent it from falling asleep
 
 - Slow load times for site modules
     potential fixes:
@@ -36,9 +31,9 @@ Uptime Robot potential fix to app falling asleep
         -
 
 
--data not writing to aws bucket
-    potential fixes:
-        - switch to sql database (not ideal)
-        - change data upload code
-        -heroku postgresql (free option, probably viable)
-        -aws database (sql or postgresql)
+-not all data is getting loaded into charts on site
+    -one part most likely due to lat/long in wrong format
+    -other than that not sure atm
+
+
+
