@@ -562,7 +562,8 @@ def uploadPage():
                 name='Is the data in long format or wide format?',
                 id="data_format",
                 options=dataFormatOptions,
-            )
+            ),
+            
         ]),
 
         # Cell Count
@@ -864,27 +865,22 @@ def upload_to_aws(filename, objectName):
         print("Credentials not available")
         return False
 
-@app
+#@app
 
 
-def long_to_wide(filename):
-    """
-    -read in csv into the dataframe
-    -pivot the dataframe into wide format (still need to remove variable name column header in df)
-    -copy into csv? return the dataframe and then call other upload functions? 
-    -
-    """
+#def long_to_wide(filename):
+    
     
 
-    try:
-        df = pd.read_csv(filename)
+    #try:
+     #   df = pd.read_csv(filename)
 
-        new_dbdf = df.pivot(index='Body of Water', columns='lagos_variableName')
+    #    new_dbdf = df.pivot(index='Body of Water', columns='lagos_variableName')
 
 
-    except Exception as e:
-        print(e)
-        return 'Error casting from long to wide format'
+   # except Exception as e:
+  #      print(e)
+ #       return 'Error casting from long to wide format'
 
 
 
