@@ -1,3 +1,4 @@
+from operator import truediv
 from flask import (
     Flask,
     g,
@@ -675,11 +676,24 @@ def uploadPage():
         html.H5('Step 3. Download the outline file below and copy the appropriate data into the csv file.',
                 id="Instructions"),
 
-        dbc.Row(html.A("Download Datasheet Outline File", href=dfexampleSheet, target='blank',
+        dbc.Row(html.A("Download Datasheet Outline File (Wide Format)", href=dfexampleSheet, target='blank',
                        download='GLEON_GMA_OUTLINE.csv',
                        className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
                 justify="center", form=True),
     ])
+
+    ####still need to add file and also upload file to aws
+    longFormBar = dbc.Container([
+        html.H5('Step 3. Download the outline file below and copy the appropriate data into the csv file.',
+                id="Instructions"),
+
+        dbc.Row(html.A("Download Datasheet Outline File (Long Format)", href=dfexampleSheet, target='blank',
+                       download='',
+                       className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
+                justify="center", form=True),
+    ])
+
+
 
     ## Step 4. Spot to upload files
     dragUpload = dbc.Container([
@@ -747,6 +761,7 @@ def uploadPage():
         dbc.Row(uploadMethodologies, className='pretty_container ten columns offset-by-one'),
         dbc.Row([
             dbc.Col(exampleBar, className="pretty_container five columns"),
+            dbc.Col(longFormBar, className="pretty_container five columns"),
             dbc.Col(dragUpload, className="pretty_container five columns"),
         ], className="ten columns offset-by-one"),
         dbc.Row(uploadButton, className='pretty_container ten columns offset-by-one')
@@ -817,6 +832,8 @@ def show_full_qaqc_url(is_full_qaqc_available):
         return {'display': 'none'}
 
 
+
+
 @app.callback(
     dash.dependencies.Output('filter-size', 'style'),
     [dash.dependencies.Input('sample-filtered', 'value')]
@@ -843,6 +860,7 @@ def show_field_option_input(field_option):
         return {'display': 'none'}, {'display': 'none'}, {'display': 'block'}, {'display': 'block'}
     else:
         return {'display': 'none'}, {'display': 'none'}, {'display': 'none'}, {'display': 'none'}
+
 
 
 """
@@ -940,6 +958,18 @@ def upload_new_database(new_dbinfo, contents, filename):
             # Assume that the user uploaded a CSV file
             new_df = pd.read_csv(
                 io.StringIO(decoded.decode('utf-8')))
+                #pivot df if necessary
+                
+              
+            @app.callback(
+            [Input('data_format', 'value')]
+            )
+            def get_data_format(data_format):  
+                if data_format == 'Long':
+                    #pivot df
+                    new_df = new_df.pivot(index='Body of Water', columns='variableName', values='datavalue')
+
+                   
             return parse_new_database(new_dbinfo, new_df)
         elif 'xls' in filename:
             # Assume that the user uploaded an excel file
@@ -1039,6 +1069,8 @@ def update_uploaded_file(contents, filename):
      dash.dependencies.State('sample-filtered', 'value'),
      dash.dependencies.State('is-lab-method bui-reported', 'value'),
      dash.dependencies.State('pw-protect', 'value'),
+     dash.dependencies.State('data_format', 'value'),
+     dash.dependencies
      ])
 def upload_file(n_clicks, contents, filename, dbname, username, userinst, publicationURL, fieldMURL, labMURL, QAQCUrl,
                 fullQAQCUrl, substrate, sampleType, fieldMethod, microcystinMethod, filterSize, cellCountURL,
@@ -1076,6 +1108,9 @@ def upload_file(n_clicks, contents, filename, dbname, username, userinst, public
             new_db.db_filter = filt
             new_db.db_lab_method = labMethod
             new_db.PWYN = pwyn
+
+       
+         
 
             return upload_new_database(new_db, contents, filename)
 

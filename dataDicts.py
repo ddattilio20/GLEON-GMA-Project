@@ -18,7 +18,13 @@ variable_Options = {
     'NO3 NO2 (mg/L)' : ['NO3 NO2 (mg/L)', 'Nitrogen, nitrite (NO2) + nitrate (NO3)'],
     'NH4 (mg/L)' : ['NH4 (mg/L)', 'Nitrogen, NH4'],
     'PO4 (ug/L)' : ['PO4 (ug/L)', 'Phosphorus, total'],
-    'Surface Temperature (degrees celsius)' : ['Surface Temperature (degrees celsius)', 'Temperature']
+    'Surface Temperature (degrees celsius)' : ['Surface Temperature (degrees celsius)', 'Temperature'],
+    'LAT' : ['Lat', 'LAT', 'Latitude', 'LATITUDE'],
+    'LONG' : ['LONG', 'Long', 'Longitude', 'LONGITUDE'],
+    'pH' : ['pH', 'ph', 'PH'],
+    'Chlorophyll' : ['Chlorophyll', 'chlorophyll'],
+    'Dissolved organic carbon' : ['Dissolved organic carbon', 'Dissolved Organic Carbon']
+
 
 
 }
