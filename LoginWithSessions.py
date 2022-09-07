@@ -1,4 +1,5 @@
 from operator import truediv
+from tkinter import E
 from flask import (
     Flask,
     g,
@@ -967,7 +968,11 @@ def upload_new_database(new_dbinfo, contents, filename):
             def get_data_format(data_format):  
                 if data_format == 'Long':
                     #pivot df
-                    new_df = new_df.pivot(index='Body of Water', columns='variableName', values='datavalue')
+                    try:
+                        new_df = new_df.pivot(index='Body of Water', columns='variableName', values='datavalue')
+                    except Exception as e:
+                        print(e)
+                        return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
 
                    
             return parse_new_database(new_dbinfo, new_df)
