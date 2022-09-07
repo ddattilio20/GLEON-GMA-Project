@@ -689,7 +689,7 @@ def uploadPage():
                 id="Instructions"),
 
         dbc.Row(html.A("Download Datasheet Outline File (Long Format)", href=dfexampleSheet, target='blank',
-                       download='',
+                       download='GMA_Long_Outline.csv',
                        className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
                 justify="center", form=True),
     ])
