@@ -1,5 +1,5 @@
 from operator import truediv
-from tkinter import E
+#from tkinter import E
 from flask import (
     Flask,
     g,
