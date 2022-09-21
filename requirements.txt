@@ -76,7 +76,7 @@ six==1.11.0
 subprocess32==3.5.4
 termcolor==1.1.0
 texttable==1.6.2
-tk==8.6.12
+tk==0.1.0
 urllib3==1.24.3
 xlrd==1.2.0
 wcwidth==0.1.9
