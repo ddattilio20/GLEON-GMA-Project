@@ -681,18 +681,22 @@ def uploadPage():
                        download='GLEON_GMA_OUTLINE.csv',
                        className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
                 justify="center", form=True),
-    ])
-
-    ####still need to add file and also upload file to aws
-    longFormBar = dbc.Container([
-        html.H5('Step 3. Download the outline file below and copy the appropriate data into the csv file.',
-                id="Instructions"),
-
         dbc.Row(html.A("Download Datasheet Outline File (Long Format)", href=dfexampleSheet, target='blank',
                        download='GMA_Long_Outline.csv',
                        className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
                 justify="center", form=True),
     ])
+
+    ####still need to add file and also upload file to aws
+    #longFormBar = dbc.Container([
+        #html.H5('Step 3. Download the outline file below and copy the appropriate data into the csv file.',
+       #         id="Instructions"),
+
+      #  dbc.Row(html.A("Download Datasheet Outline File (Long Format)", href=dfexampleSheet, target='blank',
+        #               download='GMA_Long_Outline.csv',
+        #               className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
+          #      justify="center", form=True),
+   # ])
 
 
 
@@ -773,7 +777,7 @@ def uploadPage():
 
 
 """
-Callbacks for inputs with URLs or Other Fields if "Yes"
+#Callbacks for inputs with URLs or Other Fields if "Yes"
 """
 
 
@@ -969,7 +973,7 @@ def upload_new_database(new_dbinfo, contents, filename):
                 if data_format == 'Long':
                     #pivot df
                     try:
-                        new_df = new_df.pivot(index='Body of Water', columns='variableName', values='datavalue')
+                        new_df = pd.pivot_table(data = new_df, index=['DATETIME','Body of Water', 'DataContact', 'LAT', 'LONG'], columns='variableName', values='datavalue')
                     except Exception as e:
                         print(e)
                         return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
