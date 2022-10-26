@@ -674,29 +674,25 @@ def uploadPage():
 
     ## Step 3. Links to example csv
     exampleBar = dbc.Container([
-        html.H5('Step 3. Download the outline file below and copy the appropriate data into the csv file.',
+        html.H5('Step 3. Download the wide form outline file below and copy the appropriate data into the csv file.',
                 id="Instructions"),
 
         dbc.Row(html.A("Download Datasheet Outline File (Wide Format)", href=dfexampleSheet, target='blank',
                        download='GLEON_GMA_OUTLINE.csv',
                        className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
                 justify="center", form=True),
+    ])
+
+    ####still need to add file and also upload file to aws
+    longFormBar = dbc.Container([
+        html.H5('Step 3. Download the long outline file below and copy the appropriate data into the csv file.',
+                id="Instructions"),
+
         dbc.Row(html.A("Download Datasheet Outline File (Long Format)", href=dfexampleSheet, target='blank',
                        download='GMA_Long_Outline.csv',
                        className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
                 justify="center", form=True),
     ])
-
-    ####still need to add file and also upload file to aws
-    #longFormBar = dbc.Container([
-        #html.H5('Step 3. Download the outline file below and copy the appropriate data into the csv file.',
-       #         id="Instructions"),
-
-      #  dbc.Row(html.A("Download Datasheet Outline File (Long Format)", href=dfexampleSheet, target='blank',
-        #               download='GMA_Long_Outline.csv',
-        #               className="mr-1", style={'textAlign': 'center', "padding": "2rem .5rem 2rem .5rem"}),
-          #      justify="center", form=True),
-   # ])
 
 
 
