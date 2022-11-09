@@ -22,7 +22,7 @@ variable_Options = {
     'LAT' : ['Lat', 'LAT', 'Latitude', 'LATITUDE'],
     'LONG' : ['LONG', 'Long', 'Longitude', 'LONGITUDE'],
     'pH' : ['pH', 'ph', 'PH'],
-    'Dissolved organic carbon' : ['Dissolved organic carbon', 'Dissolved Organic Carbon']
+    'Dissolved organic carbon' : ['Dissolved organic carbon', 'Dissolved Organic Carbon','Carbon, dissolved organic']
 
 
 
