@@ -22,26 +22,8 @@ variable_Options = {
     'LAT' : ['Lat', 'LAT', 'Latitude', 'LATITUDE'],
     'LONG' : ['LONG', 'Long', 'Longitude', 'LONGITUDE'],
     'pH' : ['pH', 'ph', 'PH'],
-    'Dissolved organic carbon' : ['Dissolved organic carbon', 'Dissolved Organic Carbon']
+    'Dissolved organic carbon' : ['Dissolved organic carbon', 'Dissolved Organic Carbon','Carbon, dissolved organic']
 
 
 
 }
-
-
-def varCheck(dataframe):
-    for i in range (0, len(dataframe.columns)):
-        try:
-            if dataframe.iat[i,6] in variable_Options.values():
-                tempKey = get_key(dataframe.iat[i,6])
-                dataframe.iat[i,6] = tempKey
-        except Exception as e:
-            print(e)
-            return "One of your variables is not an acceptable variable name."
-            
-
-
-def get_key(val):
-    for key, value in variable_Options.items():
-        if val == value:
-            return key
