@@ -1,6 +1,6 @@
 from s3References import client, MasterData, dfMasterData, MetadataDB, dfMetadataDB
 from LakeIDGenerator import lakeNames, instNames
-
+import pandas as pd
 masterFile = "data/MasterData.csv"
 
 
@@ -27,3 +27,21 @@ variable_Options = {
 
 
 }
+
+
+def varCheck(dataframe):
+    for i in range (0, len(dataframe.columns)):
+        try:
+            if dataframe.iat[i,6] in variable_Options.values():
+                tempKey = get_key(dataframe.iat[i,6])
+                dataframe.iat[i,6] = tempKey
+        except Exception as e:
+            print(e)
+            return "One of your variables is not an acceptable variable name."
+            
+
+
+def get_key(val):
+    for key, value in variable_Options.items():
+        if val == value:
+            return key

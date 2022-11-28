@@ -27,6 +27,7 @@ from urllib.parse import quote as urlquote
 import urllib.parse
 import dash
 import random
+from dataDicts import varCheck, variable_Options
 
 
 dfMasterData = pullMasterdata()
@@ -968,6 +969,7 @@ def upload_new_database(new_dbinfo, contents, filename):
             def get_data_format(data_format):  
                 if data_format == 'Long':
                     #pivot df
+                    varCheck(new_df)
                     try:
                         new_df = pd.pivot_table(data = new_df, index=['DATETIME','Body of Water', 'DataContact', 'LAT', 'LONG'], columns='variableName', values='datavalue')
                     except Exception as e:
