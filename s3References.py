@@ -12,6 +12,7 @@ from botocore.client import Config
 import pandas as pd
 import os
 from boto.s3.connection import S3Connection
+from app import app
 
 
 Bucket='gleongmabucket'
@@ -36,8 +37,7 @@ def pullMasterdata():
     dfMasterData['Year'] = pd.DatetimeIndex(dfMasterData['DATETIME']).year
     dfMasterData['Month'] = pd.DatetimeIndex(dfMasterData['DATETIME']).month
     dfMasterData['Date Reported'] = pd.to_datetime(dfMasterData['DATETIME'])
-    print(dfMasterData)
-    sys.stdout.flush()
+    app.logger.debug(dfMasterData)
     return dfMasterData
 
 def pullMetaDB():
