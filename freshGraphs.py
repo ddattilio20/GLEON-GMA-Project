@@ -8,6 +8,7 @@ import numpy as np
 from OldCode.settings import USEPA_LIMIT, WHO_LIMIT
 import plotly.graph_objs as go
 from s3References import dfMasterData, dfMetadataDB, dfcsvOutline, pullMasterdata, pullMetaDB
+import logging
 
 app.config['suppress_callback_exceptions'] = True
 
@@ -20,7 +21,7 @@ Dataframe calling/definition; calls for masterdata.csv from S3 bucket
 #df['Date Reported'] = pd.to_datetime(df['DATETIME'])
 
 df = pullMasterdata()
-
+app.logger.debug(df)
 dfMeta = dfMetadataDB
 allColumnNames = list(dfMasterData.columns.values)
 excludeColumnNames = ["RefID", "DataContact", "LAT", "LONG", "Lat ", "Date Reported"]
@@ -67,6 +68,7 @@ tn_tp_scatter_all = html.Div([dcc.Graph(id="tn_tp_scatter")], className="pretty_
 )
 def update_output(jsonified_data):
     current_df = df
+    app.logger.debug(current_df)
     # Find MC concentration to compare to WHO/USEPA limits; filter into bins accordingly
     MC_conc = current_df['Microcystin (ug/L)']
 
