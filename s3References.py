@@ -36,6 +36,7 @@ def pullMasterdata():
     dfMasterData['Year'] = pd.DatetimeIndex(dfMasterData['DATETIME']).year
     dfMasterData['Month'] = pd.DatetimeIndex(dfMasterData['DATETIME']).month
     dfMasterData['Date Reported'] = pd.to_datetime(dfMasterData['DATETIME'])
+    logging.info(dfMasterData)
     return dfMasterData
 
 def pullMetaDB():
