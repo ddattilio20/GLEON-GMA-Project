@@ -28,7 +28,7 @@ import urllib.parse
 import dash
 import random
 from dataDicts import varCheck, variable_Options
-
+import logging
 
 dfMasterData = pullMasterdata()
 dfMetadataDB = pullMetaDB()
@@ -875,6 +875,7 @@ def upload_to_aws(filename, objectName):
     objectName = objectName + str(filename)
 
     try:
+        app.logger.debug(objectName)
         s3.upload_file(filename, Bucket, objectName)
         print("Upload Successful")
         return True
@@ -1014,6 +1015,12 @@ def parse_new_database(new_dbinfo, new_df):
         # format all column names
         new_df.rename(columns={'Date': 'DATETIME', },
                       inplace=True)
+        
+        #sum microcystin sub-fields
+        for i in new_df.index:
+            if pd.isnull(new_df['Microcystin (ug/L)'][i]):
+                new_df['Microcystin (ug/L)'][i] = new_df['Microcystin YR (ug/L)'][i] + new_df['Microcystin dmRR (ug/L)'][i] + new_df['Microcystin RR (ug/L)'][i] + new_df['Microcystin dmLR (ug/L)'][i]
+                + new_df['Microcystin LR (ug/L)'][i] + new_df['Microcystin LY (ug/L)'][i] + new_df['Microcystin LW (ug/L)'][i] + new_df['Microcystin LF (ug/L)'][i]
 
         # remove NaN columns
         csvdir = get_csv_path(new_dbinfo.db_id)
@@ -1081,6 +1088,7 @@ def update_uploaded_file(contents, filename):
 def upload_file(n_clicks, contents, filename, dbname, username, userinst, publicationURL, fieldMURL, labMURL, QAQCUrl,
                 fullQAQCUrl, substrate, sampleType, fieldMethod, microcystinMethod, filterSize, cellCountURL,
                 ancillaryURL, publishYN, fMYN, qaqc, fullqaqc, filt, labMethod, pwyn):
+    app.logger.debug("inside upload file")
     if n_clicks != None and n_clicks > 0:
         if username == None or not username.strip():
             return 'Name field cannot be empty.'

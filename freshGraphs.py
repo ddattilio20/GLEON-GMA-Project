@@ -68,15 +68,13 @@ tn_tp_scatter_all = html.Div([dcc.Graph(id="tn_tp_scatter")], className="pretty_
 )
 def update_output(jsonified_data):
     current_df = df
-    app.logger.debug('inside update_output')
-    app.logger.debug(current_df)
+    
     # Find MC concentration to compare to WHO/USEPA limits; filter into bins accordingly
     MC_conc = current_df['Microcystin (ug/L)']
     b1 = current_df[MC_conc <= USEPA_LIMIT]
     b2 = current_df[(MC_conc > USEPA_LIMIT) & (MC_conc <= WHO_LIMIT)]
     b3 = current_df[MC_conc > WHO_LIMIT]
-    app.logger.debug('bins created')
-    app.logger.debug(b3)
+    
 
     # define the data of the graph. there's 3 scatter plots here, one for each bin defined –≠“e
     # This returns the values in log(10) for now. Might change to a log slider down the line
