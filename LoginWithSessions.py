@@ -873,9 +873,9 @@ Upload Functionality
 def upload_to_aws(filename, objectName):
     s3 = client
     objectName = objectName + str(filename)
-
+    app.logger.debug("inside upload to aws")
     try:
-        app.logger.debug(objectName)
+        app.logger.debug(Bucket)
         s3.upload_file(filename, Bucket, objectName)
         print("Upload Successful")
         return True
