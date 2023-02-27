@@ -868,7 +868,7 @@ def show_field_option_input(field_option):
 """
 Upload Functionality
 """
-
+app.logger.debug("above upload to aws")
 
 def upload_to_aws(filename, objectName):
     s3 = client
@@ -1082,8 +1082,8 @@ def update_uploaded_file(contents, filename):
      dash.dependencies.State('is-full-qaqc-available', 'value'),
      dash.dependencies.State('sample-filtered', 'value'),
      dash.dependencies.State('is-lab-method bui-reported', 'value'),
-     dash.dependencies.State('pw-protect', 'value'),
-     dash.dependencies.State('data_format', 'value'),
+     dash.dependencies.State('pw-protect', 'value')
+     #dash.dependencies.State('data_format', 'value'),
      ])
 def upload_file(n_clicks, contents, filename, dbname, username, userinst, publicationURL, fieldMURL, labMURL, QAQCUrl,
                 fullQAQCUrl, substrate, sampleType, fieldMethod, microcystinMethod, filterSize, cellCountURL,
