@@ -75,7 +75,7 @@ def update_output(jsonified_data):
     b2 = current_df[(MC_conc > USEPA_LIMIT) & (MC_conc <= WHO_LIMIT)]
     b3 = current_df[MC_conc > WHO_LIMIT]
     
-
+    
     # define the data of the graph. there's 3 scatter plots here, one for each bin defined –≠“e
     # This returns the values in log(10) for now. Might change to a log slider down the line
     data = [go.Scatter(
@@ -270,6 +270,7 @@ def update_output(jsonified_data):
     data = []
     opacity_level = 0.8
     MC_conc = selected_data['Microcystin (ug/L)']
+    app.logger.debug(selected_data)
     # make bins
     b1 = selected_data[MC_conc <= USEPA_LIMIT]
     b2 = selected_data[(MC_conc > USEPA_LIMIT) & (MC_conc <= WHO_LIMIT)]
