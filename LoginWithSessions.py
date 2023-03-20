@@ -964,18 +964,18 @@ def upload_new_database(new_dbinfo, contents, filename):
                 #pivot df if necessary
                 
               
-           ## @app.callback(
-            #[Input('data_format', 'value')]
-           # )
-            #def get_data_format(data_format):  
-             #   if data_format == 'Long':
+            @app.callback(
+            [Input('data_format', 'value')]
+            )
+            def get_data_format(data_format):  
+                if data_format == 'Long':
                     #pivot df
-              #      varCheck(new_df)
-              #      try:
-               #         new_df = pd.pivot_table(data = new_df, index=['DATETIME','Body of Water', 'DataContact', 'LAT', 'LONG'], columns='variableName', values='datavalue')
-              #      except Exception as e:
-                #        print(e)
-                #        return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
+                    varCheck(new_df)
+                    try:
+                        new_df = pd.pivot_table(data = new_df, index=['DATETIME','Body of Water', 'DataContact', 'LAT', 'LONG'], columns='variableName', values='datavalue')
+                    except Exception as e:
+                        print(e)
+                        return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
 
                    
             return parse_new_database(new_dbinfo, new_df)
@@ -1022,6 +1022,13 @@ def parse_new_database(new_dbinfo, new_df):
                 new_df['Microcystin (ug/L)'][i] = new_df['Microcystin YR (ug/L)'][i] + new_df['Microcystin dmRR (ug/L)'][i] + new_df['Microcystin RR (ug/L)'][i] + new_df['Microcystin dmLR (ug/L)'][i]
                 + new_df['Microcystin LR (ug/L)'][i] + new_df['Microcystin LY (ug/L)'][i] + new_df['Microcystin LW (ug/L)'][i] + new_df['Microcystin LF (ug/L)'][i]
 
+        #round variables
+        numColumns = len(new_df.columns)
+
+        for i in range(5,numColumns):
+            for j in new_df.index:
+                if pd.isnull(new_df.iloc[j,i]) == False:
+                    new_df.iloc[j,i] =  round(new_df.iloc[j,i],2)
         # remove NaN columns
         csvdir = get_csv_path(new_dbinfo.db_id)
         new_df.to_csv(csvdir)

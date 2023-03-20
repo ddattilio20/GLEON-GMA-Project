@@ -79,8 +79,10 @@ def update_output(jsonified_data):
     # define the data of the graph. there's 3 scatter plots here, one for each bin defined –≠“e
     # This returns the values in log(10) for now. Might change to a log slider down the line
     data = [go.Scatter(
-        x=np.log10(b1.loc[:, 'Total Nitrogen (ug/L)']),
-        y=np.log10(b1.loc[:, 'Total Phosphorus (ug/L)']),
+        #x=np.log10(b1.loc[:, 'Total Nitrogen (ug/L)']),
+        #y=np.log10(b1.loc[:, 'Total Phosphorus (ug/L)']),
+        x=(b1.loc[:, 'Total Nitrogen (ug/L)']),
+        y=(b1.loc[:, 'Total Phosphorus (ug/L)']),
         mode='markers',
         name="<USEPA",
         text=b1.loc[:, 'Body of Water Name'],
@@ -89,8 +91,10 @@ def update_output(jsonified_data):
             color="green",
         )),
         go.Scatter(
-            x=np.log10(b2.loc[:, 'Total Nitrogen (ug/L)']),
-            y=np.log10(b2.loc[:, 'Total Phosphorus (ug/L)']),
+            #x=np.log10(b2.loc[:, 'Total Nitrogen (ug/L)']),
+            #y=np.log10(b2.loc[:, 'Total Phosphorus (ug/L)']),
+            x=(b2.loc[:, 'Total Nitrogen (ug/L)']),
+            y=(b2.loc[:, 'Total Phosphorus (ug/L)']),
             mode='markers',
             name=">USEPA",
             text=b2.loc[:, 'Body of Water Name'],
@@ -99,8 +103,10 @@ def update_output(jsonified_data):
                 color="orange",
             )),
         go.Scatter(
-            x=np.log10(b3.loc[:, 'Total Nitrogen (ug/L)']),
-            y=np.log10(b3.loc[:, 'Total Phosphorus (ug/L)']),
+            #x=np.log10(b3.loc[:, 'Total Nitrogen (ug/L)']),
+            #y=np.log10(b3.loc[:, 'Total Phosphorus (ug/L)']),
+            x=(b3.loc[:, 'Total Nitrogen (ug/L)']),
+            y=(b3.loc[:, 'Total Phosphorus (ug/L)']),
             mode='markers',
             name=">WHO",
             text=b3.loc[:, 'Body of Water Name'],
@@ -115,9 +121,11 @@ def update_output(jsonified_data):
         title='Total Nitrogen vs Total Phosphorus',
         title_x=0.5,
         xaxis=dict(
-            title='log TN'),
+            #title='log TN'),
+            title='TN'),
         yaxis=dict(
-            title="log TP"),
+            #title="log TP"),
+            title="TP"),
         hovermode='closest'
     )
     # defines resulting GO figure and returns it from this definition
