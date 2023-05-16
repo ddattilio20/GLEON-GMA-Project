@@ -977,7 +977,7 @@ def upload_new_database(new_dbinfo, contents, filename):
                         print(e)
                         return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
 
-                   
+            app.logger.debug(new_df)                   
             return parse_new_database(new_dbinfo, new_df)
         elif 'xls' in filename:
             # Assume that the user uploaded an excel file
