@@ -959,15 +959,17 @@ def upload_new_database(new_dbinfo, contents, filename):
     try:
         if 'csv' in filename:
             # Assume that the user uploaded a CSV file
+            app.logger.debug("top of try block")
             new_df = pd.read_csv(
                 io.StringIO(decoded.decode('utf-8')))
                 #pivot df if necessary
                 
-              
+            app.logger.debug(new_df)   
             @app.callback(
             [Input('data_format', 'value')]
             )
-            def get_data_format(data_format):  
+            def get_data_format(data_format):
+                app.logger.debug("top of get data format")  
                 if data_format == 'Long':
                     #pivot df
                     varCheck(new_df)
@@ -977,7 +979,8 @@ def upload_new_database(new_dbinfo, contents, filename):
                         print(e)
                         return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
 
-            app.logger.debug(new_df)                   
+            app.logger.debug(new_dbinfo)
+            app.logger.debug(new_df)               
             return parse_new_database(new_dbinfo, new_df)
         elif 'xls' in filename:
             # Assume that the user uploaded an excel file
