@@ -964,20 +964,20 @@ def upload_new_database(new_dbinfo, contents, filename):
                 io.StringIO(decoded.decode('utf-8')))
                 #pivot df if necessary
                 
-            app.logger.debug(new_df)   
-            @app.callback(
-            [Input('data_format', 'value')]
-            )
-            def get_data_format(data_format):
-                app.logger.debug("top of get data format")  
-                if data_format == 'Long':
+            #app.logger.debug(new_df)   
+           # @app.callback(
+            #[Input('data_format', 'value')]
+            #)
+            #def get_data_format(data_format):
+             #   app.logger.debug("top of get data format")  
+              #  if data_format == 'Long':
                     #pivot df
-                    varCheck(new_df)
-                    try:
-                        new_df = pd.pivot_table(data = new_df, index=['DATETIME','Body of Water', 'DataContact', 'LAT', 'LONG'], columns='variableName', values='datavalue')
-                    except Exception as e:
-                        print(e)
-                        return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
+               #     varCheck(new_df)
+                #    try:
+                 #       new_df = pd.pivot_table(data = new_df, index=['DATETIME','Body of Water', 'DataContact', 'LAT', 'LONG'], columns='variableName', values='datavalue')
+                  #  except Exception as e:
+                   #     print(e)
+                    #    return 'There was an error processing this file, please make sure the data format selected is the same as the file.'
 
             app.logger.debug(new_dbinfo)
             app.logger.debug(new_df)               
