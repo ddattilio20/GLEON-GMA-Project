@@ -1030,7 +1030,7 @@ def parse_new_database(new_dbinfo, new_df):
 
         for i in range(5,numColumns):
             for j in new_df.index:
-                if pd.isnull(new_df.iloc[j,i]) == False:
+                if pd.isnull(new_df.iloc[j,i]) == False and isinstance(new_df.iloc[j,i], float):
                     new_df.iloc[j,i] =  round(new_df.iloc[j,i],2)
         # remove NaN columns
         csvdir = get_csv_path(new_dbinfo.db_id)
