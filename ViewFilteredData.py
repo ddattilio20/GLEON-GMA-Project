@@ -589,63 +589,6 @@ summaryboxes = html.Div(
                                     className="pretty_container"
                                 )
 
-"""
-summaryboxes = html.Div(
-                    [
-                        html.Div(
-                            [
-                                html.Div(
-                                    [
-                                        html.P("No. of Lakes"),
-                                        html.H6(
-                                            id="lake_text",
-                                            className="info_text"
-                                        )
-                                    ],
-                                    id="lakes",
-                                    className="pretty_container"
-                                ),
-
-                                html.Div(
-                                    [
-                                        html.Div(
-                                            [
-                                                html.P("No. of Datasets"),
-                                                html.H6(
-                                                    id="datasetText",
-                                                    className="info_text"
-                                                )
-                                            ],
-                                            id="datasetNum",
-                                            className="pretty_container"
-                                        ),
-                                        html.Div(
-                                            [
-                                                html.P("No. of Datapoints"),
-                                                html.H6(
-                                                    id="dataPointsText",
-                                                    className="info_text"
-                                                )
-                                            ],
-                                            id="datapoints",
-                                            className="pretty_container"
-                                        ),
-                                    ],
-                                    id="tripleContainer",
-                                )
-
-                            ],
-                            id="infoContainer",
-                            className="row"
-                        ),
-                    ],
-                    id="rightCol",
-                    className="eight columns"
-                )
-
-"""
-
-
 
 
 
